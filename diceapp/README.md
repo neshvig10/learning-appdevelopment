@@ -1,6 +1,6 @@
-# first_app
+# dice app
 
-A new Flutter project.
+A dice rolling application build while learning from Udemy.
 
 ## Getting Started
 
