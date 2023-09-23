@@ -21,23 +21,38 @@ class MyApp extends StatelessWidget {
 }
 
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  String text = "";
+
+  void changeText(String text){
+    setState(() {
+      this.text = text;
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Message Panungo'),),
-      body: const TextInputWidget(),
+      body: Column(children: <Widget> [ TextInputWidget(),Text(text)],) ,
     );
   }
 }
 
-
-
-
 class TextInputWidget extends StatefulWidget {
-  const TextInputWidget({super.key});
+  final Function (String) callback;
+
+  TextInputWidget({this.callback});
 
   @override
   State<TextInputWidget> createState() => _TextInputWidgetState();
@@ -45,7 +60,6 @@ class TextInputWidget extends StatefulWidget {
 
 class _TextInputWidgetState extends State<TextInputWidget> {
   final _controller = TextEditingController();
-  String text = "";
 
   @override
   void dispose(){
@@ -53,23 +67,20 @@ class _TextInputWidgetState extends State<TextInputWidget> {
     _controller.dispose();
   }
 
-  void changeText(text){
-    setState(() {
-    this.text=text;
-    });
+  void click(){
+
   }
+
 
   @override
   Widget build(BuildContext context) {
-    return Column(children : <Widget>[
-      TextField(
+    return TextField(
         controller : _controller,
-        decoration: const InputDecoration(  
-          prefixIcon: Icon(Icons.message),labelText: "Type a message !" ,
-        ),
-        onChanged: (text)=> changeText(text),
-      ),
-      Text(text)
-    ]);
+        decoration: InputDecoration(  
+          prefixIcon: const Icon(Icons.message),labelText: "Type a message !",
+          suffixIcon: IconButton(icon : const Icon(Icons.send),splashColor: Colors.blue,tooltip: "Post Message",onPressed: () => {},
+           ),
+        )
+      );
   }
 }
