@@ -38,9 +38,9 @@ class _MyAppState extends State<MyApp> {
             children: [
           ElevatedButton(
               child : Text(buttonName),onPressed: () {
-                setState(() {
-                   buttonName='Clicked';
-                 });
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                    return const NextPage();
+                  }));
                 },
               ),
           const SizedBox(height: 10,width: 10,),
@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                 // primary: Colors.yellow
 
               ),
-              child : Text(buttonName),onPressed: () {
+              child : const Text('Next Page'),onPressed: () {
                 setState(() {
                    buttonName='Clicked';
                  });
@@ -75,6 +75,21 @@ class _MyAppState extends State<MyApp> {
 
       ),
      )
+    );
+  }
+}
+
+
+
+class NextPage extends StatelessWidget {
+  const NextPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Next Page'),
+      ),
     );
   }
 }
