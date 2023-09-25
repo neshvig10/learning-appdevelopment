@@ -16,4 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 1) Starting Page
-![image](https://github.com/neshvig10/Learning-App-Development/assets/104668723/08417504-52af-4bae-8801-a70ec09a4e7c)
+   
+  ![image](https://github.com/neshvig10/Learning-App-Development/assets/104668723/08417504-52af-4bae-8801-a70ec09a4e7c)
