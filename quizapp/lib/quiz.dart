@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/data/questions.dart';
 import 'package:quizapp/questions_screen.dart';
+import 'package:quizapp/results_screen.dart';
 import 'package:quizapp/start_screen.dart';
 
 class Quiz extends StatefulWidget {
@@ -10,6 +12,29 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+
+  // final variable since we will not reassign this variable but only edit it !
+  List<String> selectedAnswers = [];
+
+
+  void restartQuiz(){
+    print("object1");
+    setState(() {
+      selectedAnswers=[];
+        activeScreen=StartScreen(switchScreen);
+    });
+  }
+
+  void chooseAnswer(String answer){
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length){
+      setState(() {
+        activeScreen=ResultsScreen(restartQuiz,selectedAnswers);
+      });
+    }
+  }
+
 
   // we add a question mark to say that the value can also be null
   //  ? is added to the variables which are declared and not initialised with any value
@@ -23,7 +48,7 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen(){  
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = QuestionsScreen(chooseAnswer);
     });
   }
 
