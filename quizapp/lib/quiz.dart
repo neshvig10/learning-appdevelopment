@@ -18,7 +18,6 @@ class _QuizState extends State<Quiz> {
 
 
   void restartQuiz(){
-    print("object1");
     setState(() {
       selectedAnswers=[];
         activeScreen=StartScreen(switchScreen);
