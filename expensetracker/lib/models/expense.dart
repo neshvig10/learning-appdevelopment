@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
+
+const uuid = Uuid();
+
+// enum is used to create a new datatype which will take the values which are only specified inside the bracket 
+enum Category {food, travel, leisure, work}
+
+final formatter = DateFormat.yMd();
+
+const categoryIcons = {
+  Category.food : Icons.lunch_dining,
+  Category.travel : Icons.flight_takeoff,
+  Category.leisure : Icons.movie,
+  Category.work : Icons.work
+};
+
+class Expense{
+
+  Expense({
+    required this.title,
+    required this.amount,
+    required this.date,
+    required this.category,
+  }): id = uuid.v4();
+
+  final String id;
+  final String title;
+  final double amount;
+  final DateTime date;
+  final Category category;
+
+
+  String get formattedDate {
+    return formatter.format(date);
+  }
+  
+}
