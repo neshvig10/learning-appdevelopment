@@ -1,5 +1,6 @@
 import 'package:expensetracker/widgets/expenses_list/expenseslist.dart';
 import 'package:expensetracker/models/expense.dart';
+import 'package:expensetracker/widgets/newexpense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -17,12 +18,34 @@ class _ExpensesState extends State<Expenses> {
     Expense(title: 'Raquet', amount: 700, date: DateTime.now(), category: Category.leisure),
   ];
 
+  void _addExpense(Expense expense){
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  //  function to open the screen on clicking the + button
+
+  // this is used to open a modalbottom sheet when we click on the + icon
+  void _openAddExpenseOverlay(){
+    showModalBottomSheet(context: context, builder: (ctx)=> NewExpense(onAddExpense:_addExpense),
+    );
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expenses'),
+        actions: [
+          IconButton(onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))
+        ],
+      ),
+      body: Column(
       children: [
-        const Text('Expenses'),
         Expanded(child: ExpensesList(expenses: _registeredExpenses)) ,
       ],
     ),);
