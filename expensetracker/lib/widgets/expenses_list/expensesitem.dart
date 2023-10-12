@@ -22,6 +22,7 @@ class ExpenseItem extends StatelessWidget {
             const SizedBox(height: 4,), 
             Row(
               children: [Text('\$ ${expense.amount.toStringAsFixed(2)}'),
+                // takes up the space which is present and aligns things accordingly
                 const Spacer(),
                 Row(
                   children: [
