@@ -7,10 +7,9 @@ import 'package:mealsapp/screens/meals.dart';
 import 'package:mealsapp/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key,required this.addToFavorites,required this.availableMeals});
+  const CategoriesScreen({super.key,required this.availableMeals});
 
 
-  final void Function (Meal meal) addToFavorites;
   final List<Meal> availableMeals;
 
   void _selectCategory(BuildContext context,Category category){
@@ -21,7 +20,7 @@ class CategoriesScreen extends StatelessWidget {
     
     // where is a function which is applied to all the elements of the list and returns a modified list
     Navigator.push(context, MaterialPageRoute(
-      builder: (ctx) => MealsScreen(title:'Meals' ,meals: filteredMeals,addToFavorites: addToFavorites,),
+      builder: (ctx) => MealsScreen(title:'Meals' ,meals: filteredMeals),
           ),
       );
     // Navigator.of(context).push(route)

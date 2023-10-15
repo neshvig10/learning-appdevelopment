@@ -7,12 +7,11 @@ class MealsScreen extends StatelessWidget {
     super.key, 
     required this.title,
     required this.meals,
-    required this.addToFavorites,
     });
 
   final String title;
   final List<Meal> meals;
-  final void Function (Meal meal) addToFavorites;
+
 
 
   @override
@@ -21,7 +20,7 @@ class MealsScreen extends StatelessWidget {
     Widget content = ListView.builder(
       itemCount: meals.length,
       itemBuilder: (context,index)=> 
-          MealItem(meal: meals[index],addToFavorites: addToFavorites,),  
+          MealItem(meal: meals[index],),  
       );
 
       if (meals.isEmpty){

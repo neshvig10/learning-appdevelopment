@@ -5,14 +5,13 @@ import 'package:mealsapp/widgets/mealitemtrait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal,required this.addToFavorites});
+  const MealItem({super.key, required this.meal});
 
   final Meal meal;
-  final void Function (Meal meal) addToFavorites;  
 
   void _openMealDetailed(BuildContext context,Meal meal){
     Navigator.push(context, MaterialPageRoute(builder: (ctx)=> 
-      MealDetailed(meal: meal,addToFavorites: addToFavorites,)
+      MealDetailed(meal: meal)
       ),
     );
   }

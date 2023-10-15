@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealsapp/models/meal.dart';
+import 'package:mealsapp/providers/favoritesprovider.dart';
 
-class MealDetailed extends StatelessWidget {
-  const MealDetailed({super.key,required this.meal,required this.addToFavorites});
+// change stateless widget to a consumer widget 
+//  whenever riverpod is used we have to change like this
+
+class MealDetailed extends ConsumerWidget {
+  const MealDetailed({super.key,required this.meal});
 
   final Meal meal;
 
-  final void Function(Meal meal) addToFavorites;
-
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(title: Text(meal.title),actions: [
-        IconButton(onPressed: (){addToFavorites(meal);}, icon: const Icon(Icons.star))
+        // we should use read instead of watch
+        IconButton(onPressed: (){
+          ScaffoldMessenger.of(context).clearSnackBars();
+          if (ref.read(favoriteMealsProvider.notifier).toggleMealFavoriteStatus(meal)){
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Added to Favorites'),
+            ),);
+          }
+          else{
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Removed from Favorites')
+            ),
+            );
+          }
+        }, icon: const Icon(Icons.star))
       ],),
       body: SingleChildScrollView(
         child: Column(
