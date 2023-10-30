@@ -48,7 +48,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   void _selectScreen(String identifier) async {
     Navigator.pop(context);
     if (identifier=='filter'){
-      final result = await Navigator.push<Map<Filter,bool>>(context, MaterialPageRoute(builder: (ctx) => FiltersScreen(currentFilters: _SelectedFilters,)),);
+      final result = await Navigator.push<Map<Filter,bool>>(context, MaterialPageRoute(builder: (ctx) => const FiltersScreen()),);
       // print(result);
       setState(() {
         // ?? makes sure that if the result is null then k initial filters is assigned
